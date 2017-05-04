@@ -300,7 +300,8 @@ class FileManagerApi
                 'rights' => $this->parsePerms(fileperms($file)),
                 'size' => filesize($file),
                 'date' => date('Y-m-d H:i:s',$date),
-                'type' => is_dir($file) ? 'dir' : 'file'
+                'type' => is_dir($file) ? 'dir' : 'file',
+                'index' => is_dir($file) ? $this->containsIndex($file) : false
             ];
         }, $files);
 
@@ -634,5 +635,33 @@ class FileManagerApi
         $name = str_replace(' ', '-', $name);
         
         return $name;
+    }
+
+        /**
+     * Determines if a directory contains an index file
+     *
+     * @param string $dirPath Path to directory to be checked for an index
+     * @return boolean Returns true if directory contains a valid index file, false if not
+     * @access public
+     */
+    public function containsIndex($dirPath) {
+
+        // Check if directory contains an index file
+        $index_files = array('index.htm',
+        'index.html',
+        'index.php');
+
+        foreach ($index_files as $indexFile) {
+
+            if (file_exists($dirPath . '/' . $indexFile)) {
+
+                return true;
+
+            }
+
+        }
+
+        return false;
+
     }
 }
