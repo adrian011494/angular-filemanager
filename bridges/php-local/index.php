@@ -17,7 +17,8 @@ include 'LocalBridge/FileManagerApi.php';
  * - base path without last slash (default: '$currentDirectory/../files')
  * - language (default: 'en'); mute_errors (default: true, will call ini_set('display_errors', 0))
  */
-$fileManagerApi = new FileManagerApi();
+
+$fileManagerApi = new FileManagerApi("/var/www/html");
 
 $rest = new Rest();
 $rest->post([$fileManagerApi, 'postHandler'])

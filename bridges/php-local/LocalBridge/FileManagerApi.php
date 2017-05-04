@@ -13,7 +13,7 @@ class FileManagerApi
 
     private $translate;
 
-    public function __construct($basePath = "/var/www/html", $lang = 'en', $muteErrors = true)
+    public function __construct($basePath = null, $lang = 'en', $muteErrors = true)
     {
         if ($muteErrors) {
             ini_set('display_errors', 0);
@@ -261,6 +261,7 @@ class FileManagerApi
 
     private function uploadAction($path, $files)
     {
+
         $path = $this->canonicalizePath($this->basePath . $path);
 
         foreach ($_FILES as $file) {
@@ -268,6 +269,7 @@ class FileManagerApi
                 $file['tmp_name'],
                 $path . DIRECTORY_SEPARATOR . $this->normalizeName($file['name'])
             );
+            
             if ($uploaded === false) {
                 return false;
             }
@@ -278,21 +280,19 @@ class FileManagerApi
 
     private function listAction($path)
     {
-//         ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
+
         $files = array_values(array_filter(
             scandir($this->basePath . $path),
             function ($path) {
                 return !($path === '.' || $path === '..');
             }
         ));
-        // print_r($files) ;
+       
         $files = array_map(function ($file) use ($path) {
             $file = $this->canonicalizePath(
                 $this->basePath . ($path!="/"? $path. DIRECTORY_SEPARATOR:$path) . $file
             );
-            //print_r($file) ;
+            
             $date = /*new \DateTime('@' .*/ filemtime($file)/*)*/;
 
             return [
@@ -304,7 +304,7 @@ class FileManagerApi
             ];
         }, $files);
 
-        //print_r($files) ;
+        
         return $files;
     }
 
@@ -626,10 +626,12 @@ class FileManagerApi
     */
     private function normalizeName($name)
     {
-        $name = preg_replace('~[^\\pL0-9_]+~u', '-', $name);
+        //$name = preg_replace('~[^\\pL0-9_]+~u', '-', $name);
         $name = trim($name, "-");
-        $name = iconv("utf-8", "us-ascii//TRANSLIT", $name);
-        $name = preg_replace('~[^-a-z0-9_]+~', '', $name);
+        // $name = iconv("utf-8", "us-ascii//TRANSLIT", $name);
+        // $name = preg_replace('~[^-a-z0-9_]+~', '', $name);
+        $name = str_replace(' ', '-', $name);
+        
         return $name;
     }
 }
