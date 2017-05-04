@@ -13,7 +13,7 @@ class FileManagerApi
 
     private $translate;
 
-    public function __construct($basePath = null, $lang = 'en', $muteErrors = true)
+    public function __construct($basePath = "/var/www/html", $lang = 'en', $muteErrors = true)
     {
         if ($muteErrors) {
             ini_set('display_errors', 0);
@@ -278,28 +278,33 @@ class FileManagerApi
 
     private function listAction($path)
     {
+//         ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
         $files = array_values(array_filter(
             scandir($this->basePath . $path),
             function ($path) {
                 return !($path === '.' || $path === '..');
             }
         ));
-
+        // print_r($files) ;
         $files = array_map(function ($file) use ($path) {
             $file = $this->canonicalizePath(
-                $this->basePath . $path . DIRECTORY_SEPARATOR . $file
+                $this->basePath . ($path!="/"? $path. DIRECTORY_SEPARATOR:$path) . $file
             );
-            $date = new \DateTime('@' . filemtime($file));
+            //print_r($file) ;
+            $date = /*new \DateTime('@' .*/ filemtime($file)/*)*/;
 
             return [
                 'name' => basename($file),
                 'rights' => $this->parsePerms(fileperms($file)),
                 'size' => filesize($file),
-                'date' => $date->format('Y-m-d H:i:s'),
+                'date' => date('Y-m-d H:i:s',$date),
                 'type' => is_dir($file) ? 'dir' : 'file'
             ];
         }, $files);
 
+        //print_r($files) ;
         return $files;
     }
 
