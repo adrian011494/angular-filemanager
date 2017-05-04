@@ -440,6 +440,7 @@ class FileManagerApi
 
     private function compressAction($paths, $destination, $archiveName)
     {
+
         $archivePath = $this->basePath . $destination . $archiveName;
 
         $zip = new \ZipArchive();
