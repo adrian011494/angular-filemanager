@@ -19,6 +19,8 @@
             $scope.viewTemplate = $storage.getItem('viewTemplate') || 'main-icons.html';
             $scope.fileList = [];
             $scope.temps = [];
+            $scope.newFile = {};
+            $scope.newFolder = {};
 
             $scope.$watch('temps', function () {
                 if ($scope.singleSelection()) {
@@ -311,14 +313,25 @@
             };
 
             $scope.createFolder = function () {
-                var item = $scope.singleSelection();
-                var name = item.tempModel.name;
+                var name = $scope.newFolder.name;
                 if (!name || $scope.fileNavigator.fileNameExists(name)) {
                     return $scope.apiMiddleware.apiHandler.error = $translate.instant('error_invalid_filename');
                 }
-                $scope.apiMiddleware.createFolder(item).then(function () {
+                $scope.apiMiddleware.createFolder('/' + $scope.fileNavigator.getcurrentPath() + '/' + name).then(function () {
                     $scope.fileNavigator.refresh();
                     $scope.modal('newfolder', true);
+                });
+            };
+
+            $scope.createFile = function () {
+                var name = $scope.newFile.name;
+
+                if (!name || $scope.fileNavigator.fileNameExists(name)) {
+                    return $scope.apiMiddleware.apiHandler.error = $translate.instant('error_invalid_filename');
+                }
+                $scope.apiMiddleware.createFile('/' + $scope.fileNavigator.getcurrentPath() + '/' + name).then(function () {
+                    $scope.fileNavigator.refresh();
+                    $scope.modal('newfile', true);
                 });
             };
 

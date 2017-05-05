@@ -15,6 +15,7 @@
             editUrl: 'bridges/php/handler.php',
             getContentUrl: 'bridges/php/handler.php',
             createFolderUrl: 'bridges/php/handler.php',
+            createFileUrl: 'bridges/php/handler.php',
             downloadFileUrl: 'bridges/php/handler.php',
             downloadMultipleUrl: 'bridges/php/handler.php',
             compressUrl: 'bridges/php/handler.php',
@@ -40,6 +41,7 @@
                 preview: true,
                 remove: true,
                 createFolder: true,
+                createFile: true,
                 pickFiles: false,
                 pickFolders: false
             },

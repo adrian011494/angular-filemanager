@@ -163,10 +163,14 @@
                 return this.currentPath.slice(-1)[0] || '/';
             };
 
+            FileNavigator.prototype.getcurrentPath = function () {
+                return this.currentPath.join('/');
+            };
+
 
             FileNavigator.prototype.openWebUrl = function (item) {
                 // console.log(item)
-                console.log('$location', $location.protocol() + "://" + $location.host() + ":" + $location.port() + "/" + item.name);
+                // console.log('$location', $location.protocol() + "://" + $location.host() + ":" + $location.port() + "/" + item.name);
                 return $location.protocol() + "://" + $location.host() + ":" + $location.port() + "/" + item.name;
             };
 

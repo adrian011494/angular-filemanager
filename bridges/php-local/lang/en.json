@@ -10,6 +10,8 @@
 	"saving_failed": "Saving failed",
 	"folder_already_exists": "Folder already exists",
 	"folder_creation_failed": "Folder creation failed",
+	"file_already_exists": "File already exists",
+	"file_creation_failed": "File creation failed",
 	"permissions_change_failed": "Permissions change failed",
 	"compression_failed": "Compression failed",
 	"archive_opening_failed": "Could not open the archive, it is either corrupted or unsupported",

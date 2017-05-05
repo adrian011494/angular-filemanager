@@ -141,9 +141,14 @@
                 return this.apiHandler.changePermissions(this.getApiPath(items[0]) + fileManagerConfig.permissionsUrl, items, code, octal, recursive);
             };
 
-            ApiMiddleware.prototype.createFolder = function (item) {
-                var path = item.tempModel.fullPath();
+            ApiMiddleware.prototype.createFolder = function (path) {
+
                 return this.apiHandler.createFolder(this.getApiPath(path) + fileManagerConfig.createFolderUrl, path);
+            };
+
+            ApiMiddleware.prototype.createFile = function (path) {
+
+                return this.apiHandler.createFile(this.getApiPath(path) + fileManagerConfig.createFileUrl, path);
             };
 
             return ApiMiddleware;

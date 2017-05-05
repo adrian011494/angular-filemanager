@@ -47,8 +47,10 @@
             loading: 'Loading',
             search: 'Search',
             create_folder: 'Create folder',
+            create_file: 'Create file',
             create: 'Create',
             folder_name: 'Folder name',
+            file_name: 'File name',
             upload: 'Upload',
             change_permissions: 'Change permissions',
             change: 'Change',
@@ -99,6 +101,7 @@
             open: 'Open',
             these_elements: 'these {{total}} elements',
             new_folder: 'New folder',
+            new_file: 'New file',
             download_as_zip: 'Download as ZIP'
         });
 
@@ -146,6 +149,7 @@
             loading: 'טוען',
             search: 'חפש',
             create_folder: 'צור תיקייה',
+            create_file: 'צור תיקייה',
             create: 'צור',
             folder_name: 'שם תיקייה',
             upload: 'העלה',
@@ -244,6 +248,7 @@
             loading: 'Carregando',
             search: 'Localizar',
             create_folder: 'Criar Pasta',
+            create_file: 'Criar Pasta',
             create: 'Criar',
             folder_name: 'Nome da pasta',
             upload: 'Fazer',
@@ -343,8 +348,10 @@
             loading: 'Cargando',
             search: 'Buscar',
             create_folder: 'Crear carpeta',
+            create_file: 'Crear archivo',
             create: 'Crear',
             folder_name: 'Nombre de la carpeta',
+            file_name: 'Nombre del archivo',
             upload: 'Subir',
             change_permissions: 'Cambiar permisos',
             change: 'Cambiar',
@@ -395,6 +402,7 @@
             open: 'Abrir',
             these_elements: 'estos {{total}} elementos',
             new_folder: 'Nueva carpeta',
+            new_file: 'Nuevo archivo',
             download_as_zip: 'Descargar como ZIP'
         });
 
@@ -442,6 +450,7 @@
             loading: 'Chargement en cours',
             search: 'Recherche',
             create_folder: 'Créer un dossier',
+            create_file: 'Créer un file',
             create: 'Créer',
             folder_name: 'Nom du dossier',
             upload: 'Upload',
@@ -541,6 +550,7 @@
             loading: 'Lade',
             search: 'Suche',
             create_folder: 'Ordner erstellen',
+            create_file: 'Ordner erstellen',
             create: 'Erstellen',
             folder_name: 'Verzeichnisname',
             upload: 'Hochladen',

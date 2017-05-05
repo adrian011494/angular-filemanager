@@ -131,6 +131,17 @@ class FileManagerApi
                 }
                 break;
 
+            case 'createFile':
+                $created = $this->createFileAction($request['newPath']);
+                if ($created === true) {
+                    $response = $this->simpleSuccessResponse();
+                } elseif ($created === 'exists') {
+                    $response = $this->simpleErrorResponse($t->file_already_exists);
+                } else {
+                    $response = $this->simpleErrorResponse($t->file_creation_failed);
+                }
+                break;
+
             case 'changePermissions':
                 $changed = $this->changePermissionsAction($request['items'], $request['perms'], $request['recursive']);
                 if ($changed === true) {
@@ -423,6 +434,17 @@ class FileManagerApi
         }
 
         return mkdir($path);
+    }
+
+    private function createFileAction($path)
+    {
+        $path = $this->basePath . $path;
+
+        if (file_exists($path)) {
+            return 'exists';
+        }
+        $myfile = fopen($path, "w");
+        return fclose($myfile);
     }
 
     private function changePermissionsAction($paths, $permissions, $recursive)

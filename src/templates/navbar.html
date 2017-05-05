@@ -14,8 +14,7 @@
                         <div class="pull-left visible-xs" ng-if="fileNavigator.currentPath.length">
                             <button class="btn btn-primary btn-flat" ng-click="fileNavigator.upDir()">
                                 <i class="glyphicon glyphicon-chevron-left"></i>
-                            </button>
-                            {{fileNavigator.getCurrentFolderName() | strLimit : 12}}
+                            </button> {{fileNavigator.getCurrentFolderName() | strLimit : 12}}
                         </div>
                         <div class="btn-group">
                             <button class="btn btn-flat btn-sm dropdown-toggle" type="button" id="dropDownMenuSearch" data-toggle="dropdown" aria-expanded="true">
@@ -26,11 +25,13 @@
                             </div>
                         </div>
 
-                        <button class="btn btn-flat btn-sm" ng-click="$parent.setTemplate('main-icons.html')" ng-show="$parent.viewTemplate !=='main-icons.html'" title="{{'icons' | translate}}">
+                        <button class="btn btn-flat btn-sm" ng-click="$parent.setTemplate('main-icons.html')" ng-show="$parent.viewTemplate !=='main-icons.html'"
+                            title="{{'icons' | translate}}">
                             <i class="glyphicon glyphicon-th-large"></i>
                         </button>
 
-                        <button class="btn btn-flat btn-sm" ng-click="$parent.setTemplate('main-table.html')" ng-show="$parent.viewTemplate !=='main-table.html'" title="{{'list' | translate}}">
+                        <button class="btn btn-flat btn-sm" ng-click="$parent.setTemplate('main-table.html')" ng-show="$parent.viewTemplate !=='main-table.html'"
+                            title="{{'list' | translate}}">
                             <i class="glyphicon glyphicon-th-list"></i>
                         </button>
 
@@ -67,6 +68,11 @@
                                 <li role="presentation" ng-show="config.allowedActions.createFolder" ng-click="modal('newfolder') && prepareNewFolder()">
                                     <a href="" role="menuitem" tabindex="-1">
                                         <i class="glyphicon glyphicon-plus"></i> {{"new_folder" | translate}}
+                                    </a>
+                                </li>
+                                <li role="presentation" ng-show="config.allowedActions.createFile" ng-click="modal('newfile') && prepareNewFile()">
+                                    <a href="" role="menuitem" tabindex="-1">
+                                        <i class="glyphicon glyphicon-plus"></i> {{"new_file" | translate}}
                                     </a>
                                 </li>
                                 <li role="presentation" ng-show="config.allowedActions.upload" ng-click="modal('uploadfile')">
