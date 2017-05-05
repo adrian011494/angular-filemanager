@@ -1,6 +1,6 @@
-(function(angular) {
+(function (angular) {
     'use strict';
-    angular.module('FileManagerApp').provider('fileManagerConfig', function() {
+    angular.module('FileManagerApp').provider('fileManagerConfig', function () {
 
         var values = {
             appName: 'angular-filemanager v1.5',
@@ -63,7 +63,7 @@
         };
 
         return {
-            $get: function() {
+            $get: function () {
                 return values;
             },
             set: function (constants) {

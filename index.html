@@ -20,27 +20,28 @@
   <link rel="stylesheet" href="bower_components/bootswatch/paper/bootstrap.min.css" />
   <!-- /third party -->
 
-  <!-- Uncomment if you need to use raw source code
-    <script src="src/js/app.js"></script>
-    <script src="src/js/directives/directives.js"></script>
-    <script src="src/js/filters/filters.js"></script>
-    <script src="src/js/providers/config.js"></script>
-    <script src="src/js/entities/chmod.js"></script>
-    <script src="src/js/entities/item.js"></script>
-    <script src="src/js/services/apihandler.js"></script>
-    <script src="src/js/services/apimiddleware.js"></script>
-    <script src="src/js/services/filenavigator.js"></script>
-    <script src="src/js/providers/translations.js"></script>
-    <script src="src/js/controllers/main.js"></script>
-    <script src="src/js/controllers/selector-controller.js"></script>
-    <link href="src/css/animations.css" rel="stylesheet">
-    <link href="src/css/dialogs.css" rel="stylesheet">
-    <link href="src/css/main.css" rel="stylesheet">
-  -->
+
+  <script src="src/js/app.js"></script>
+  <script src="src/js/directives/directives.js"></script>
+  <script src="src/js/filters/filters.js"></script>
+  <script src="src/js/providers/config.js"></script>
+  <script src="src/js/entities/chmod.js"></script>
+  <script src="src/js/entities/item.js"></script>
+  <script src="src/js/services/apihandler.js"></script>
+  <script src="src/js/services/apimiddleware.js"></script>
+  <script src="src/js/services/filenavigator.js"></script>
+  <script src="src/js/providers/translations.js"></script>
+  <script src="src/js/controllers/main.js"></script>
+  <script src="src/js/controllers/selector-controller.js"></script>
+  <link href="src/css/animations.css" rel="stylesheet">
+  <link href="src/css/dialogs.css" rel="stylesheet">
+  <link href="src/css/main.css" rel="stylesheet">
+
 
   <!-- Comment if you need to use raw source code -->
+  <!--
   <link href="dist/angular-filemanager.min.css" rel="stylesheet">
-  <script src="dist/angular-filemanager.min.js"></script>
+  <script src="dist/angular-filemanager.min.js"></script>-->
   <!-- /Comment if you need to use raw source code -->
 
   <script type="text/javascript">
@@ -61,20 +62,20 @@
           pickFolders: false,
         }),
 
-        listUrl: 'bridges/php-local/index.php',
-        uploadUrl: 'bridges/php-local/index.php',
-        renameUrl: 'bridges/php-local/index.php',
-        copyUrl: 'bridges/php-local/index.php',
-        moveUrl: 'bridges/php-local/index.php',
-        removeUrl: 'bridges/php-local/index.php',
-        editUrl: 'bridges/php-local/index.php',
-        getContentUrl: 'bridges/php-local/index.php',
-        createFolderUrl: 'bridges/php-local/index.php',
-        downloadFileUrl: 'bridges/php-local/index.php',
-        downloadMultipleUrl: 'bridges/php-local/index.php',
-        compressUrl: 'bridges/php-local/index.php',
-        extractUrl: 'bridges/php-local/index.php',
-        permissionsUrl: 'bridges/php-local/index.php',
+        listUrl: '/php-local/index.php',
+        uploadUrl: '/php-local/index.php',
+        renameUrl: '/php-local/index.php',
+        copyUrl: '/php-local/index.php',
+        moveUrl: '/php-local/index.php',
+        removeUrl: '/php-local/index.php',
+        editUrl: '/php-local/index.php',
+        getContentUrl: '/php-local/index.php',
+        createFolderUrl: '/php-local/index.php',
+        downloadFileUrl: '/php-local/index.php',
+        downloadMultipleUrl: '/php-local/index.php',
+        compressUrl: '/php-local/index.php',
+        extractUrl: '/php-local/index.php',
+        permissionsUrl: '/php-local/index.php',
         basePath: '/cms',
       });
     }]);

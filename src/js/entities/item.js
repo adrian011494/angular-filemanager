@@ -1,8 +1,8 @@
-(function(angular) {
+(function (angular) {
     'use strict';
-    angular.module('FileManagerApp').factory('item', ['fileManagerConfig', 'chmod', function(fileManagerConfig, Chmod) {
+    angular.module('FileManagerApp').factory('item', ['fileManagerConfig', 'chmod', function (fileManagerConfig, Chmod) {
 
-        var Item = function(model, path) {
+        var Item = function (model, path) {
             var rawModel = {
                 name: model && model.name || '',
                 path: path || [],
@@ -12,7 +12,8 @@
                 perms: new Chmod(model && model.rights),
                 content: model && model.content || '',
                 recursive: false,
-                fullPath: function() {
+                index: model.index,
+                fullPath: function () {
                     var path = this.path.filter(Boolean);
                     return ('/' + path.join('/') + '/' + this.name).replace(/\/\//, '/');
                 }
@@ -24,42 +25,44 @@
             this.model = angular.copy(rawModel);
             this.tempModel = angular.copy(rawModel);
 
+            this.index = rawModel.index;
+
             function parseMySQLDate(mysqlDate) {
                 var d = (mysqlDate || '').toString().split(/[- :]/);
                 return new Date(d[0], d[1] - 1, d[2], d[3], d[4], d[5]);
             }
         };
 
-        Item.prototype.update = function() {
+        Item.prototype.update = function () {
             angular.extend(this.model, angular.copy(this.tempModel));
         };
 
-        Item.prototype.revert = function() {
+        Item.prototype.revert = function () {
             angular.extend(this.tempModel, angular.copy(this.model));
             this.error = '';
         };
 
-        Item.prototype.isFolder = function() {
+        Item.prototype.isFolder = function () {
             return this.model.type === 'dir';
         };
 
-        Item.prototype.isEditable = function() {
+        Item.prototype.isEditable = function () {
             return !this.isFolder() && fileManagerConfig.isEditableFilePattern.test(this.model.name);
         };
 
-        Item.prototype.isImage = function() {
+        Item.prototype.isImage = function () {
             return fileManagerConfig.isImageFilePattern.test(this.model.name);
         };
 
-        Item.prototype.isCompressible = function() {
+        Item.prototype.isCompressible = function () {
             return this.isFolder();
         };
 
-        Item.prototype.isExtractable = function() {
+        Item.prototype.isExtractable = function () {
             return !this.isFolder() && fileManagerConfig.isExtractableFilePattern.test(this.model.name);
         };
 
-        Item.prototype.isSelectable = function() {
+        Item.prototype.isSelectable = function () {
             return (this.isFolder() && fileManagerConfig.allowedActions.pickFolders) || (!this.isFolder() && fileManagerConfig.allowedActions.pickFiles);
         };
 

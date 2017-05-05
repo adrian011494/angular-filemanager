@@ -415,6 +415,7 @@ class FileManagerApi
 
     private function changePermissionsAction($paths, $permissions, $recursive)
     {
+
         foreach ($paths as $path) {
             if (!file_exists($this->basePath . $path)) {
                 return 'missing';

@@ -1,4 +1,5 @@
 <div id="context-menu" class="dropdown clearfix animated fast fadeIn">
+
     <ul class="dropdown-menu dropdown-right-click" role="menu" aria-labelledby="dropdownMenu" ng-show="temps.length">
 
         <li ng-show="singleSelection() && singleSelection().isFolder()">
@@ -74,7 +75,7 @@
         </li>
 
         <li class="divider" ng-show="config.allowedActions.remove"></li>
-        
+
         <li ng-show="config.allowedActions.remove">
             <a href="" tabindex="-1" ng-click="modal('remove')">
                 <i class="glyphicon glyphicon-trash"></i> {{'remove' | translate}}
