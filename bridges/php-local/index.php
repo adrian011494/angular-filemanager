@@ -18,7 +18,13 @@ include 'LocalBridge/FileManagerApi.php';
  * - language (default: 'en'); mute_errors (default: true, will call ini_set('display_errors', 0))
  */
 
-$fileManagerApi = new FileManagerApi("/var/www/html");
+//For ignare files and folders
+$ignoreFiles=["php-local"];
+
+//For work folder
+$basePath="/var/www/html";
+
+$fileManagerApi = new FileManagerApi($basePath,$ignoreFiles);
 
 $rest = new Rest();
 $rest->post([$fileManagerApi, 'postHandler'])

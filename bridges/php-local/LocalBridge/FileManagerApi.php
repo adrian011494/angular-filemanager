@@ -13,7 +13,9 @@ class FileManagerApi
 
     private $translate;
 
-    public function __construct($basePath = null, $lang = 'en', $muteErrors = true)
+    private $ignoreFiles;
+
+    public function __construct($basePath = null,$ignoreFiles=array(),$lang = 'en', $muteErrors = true)
     {
         if ($muteErrors) {
             ini_set('display_errors', 0);
@@ -21,6 +23,7 @@ class FileManagerApi
 
         $this->basePath = $basePath ?: dirname(__DIR__);
         $this->translate = new Translate($lang);
+        $this->ignoreFiles=$ignoreFiles;
     }
 
     public function postHandler($query, $request, $files)
@@ -281,12 +284,21 @@ class FileManagerApi
     private function listAction($path)
     {
 
+        $self = $this;
         $files = array_values(array_filter(
             scandir($this->basePath . $path),
-            function ($path) {
-                return !($path === '.' || $path === '..');
+            function ($path) use ($self) {
+                $is=0;
+                foreach ($this->ignoreFiles as $key) {
+                    if($key==$path){
+                        $is=1;
+                        break;
+                    }
+                }
+                return !($path === '.' || $path === '..' || $is);
             }
         ));
+
        
         $files = array_map(function ($file) use ($path) {
             $file = $this->canonicalizePath(
