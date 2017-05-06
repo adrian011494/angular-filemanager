@@ -21,6 +21,7 @@
             compressUrl: 'bridges/php/handler.php',
             extractUrl: 'bridges/php/handler.php',
             permissionsUrl: 'bridges/php/handler.php',
+            bridgesFolder: 'bridges',
             basePath: '/',
 
             searchForm: true,

@@ -11,6 +11,11 @@
                 this.currentPath = this.getBasePath();
                 this.history = [];
                 this.error = '';
+                // var self = this;
+                // this.list().then(function (data) {
+                //     self.apiMiddleware.setrootFolders(data.result);
+                // })
+
 
                 this.onRefresh = function () {};
             };
@@ -169,8 +174,6 @@
 
 
             FileNavigator.prototype.openWebUrl = function (item) {
-                // console.log(item)
-                // console.log('$location', $location.protocol() + "://" + $location.host() + ":" + $location.port() + "/" + item.name);
                 return $location.protocol() + "://" + $location.host() + ":" + $location.port() + "/" + item.name;
             };
 

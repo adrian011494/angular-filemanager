@@ -5,20 +5,50 @@
 
             var ApiMiddleware = function () {
                 this.apiHandler = new ApiHandler();
+                this.rootFolders = [];
+
+
+
             };
 
+
+            ApiMiddleware.prototype.setrootFolders = function (array) {
+                this.rootFolders = array;
+                console.log(this.rootFolders)
+
+            };
             ApiMiddleware.prototype.getPath = function (arrayPath) {
-                return '/' + arrayPath.join('/');
+                if (angular.isArray(arrayPath))
+                    return '/' + arrayPath.join('/');
+
+                return arrayPath;
             };
             ApiMiddleware.prototype.getApiPath = function (path) {
-                var folder = "bridges";
-                if (path.includes("/cms/drupal"))
-                    folder = "/cms/drupal";
-                if (path.includes("/cms/joomla"))
-                    folder = "/cms/joomla";
-                if (path.includes("/cms/wordpress"))
-                    folder = "/cms/wordpress";
-                return folder;
+                if (angular.isArray(path))
+                    path = this.getPath(path);
+                if (this.rootFolders.length == 0) {
+                    var self = this;
+
+                    this.apiHandler.fastList(fileManagerConfig.bridgesFolder + fileManagerConfig.listUrl, this.getPath(fileManagerConfig.basePath)).then(function (data) {
+                        self.rootFolders = [];
+                        angular.forEach(data.result, function (value, key) {
+                            this.push(self.getPath(fileManagerConfig.basePath) + "/" + value.name);
+                        }, self.rootFolders);
+                    });
+                }
+
+                var index = this.rootFolders.indexOf(path);
+                if (index >= 0)
+                    return this.rootFolders[index];
+                return fileManagerConfig.bridgesFolder;
+                // var folder = "bridges";
+                // if (path.includes("/cms/drupal"))
+                //     folder = "/cms/drupal";
+                // if (path.includes("/cms/joomla"))
+                //     folder = "/cms/joomla";
+                // if (path.includes("/cms/wordpress"))
+                //     folder = "/cms/wordpress";
+                // return folder;
             };
 
             ApiMiddleware.prototype.getFileList = function (files) {

@@ -56,6 +56,30 @@
                 return deferred.promise;
             };
 
+            ApiHandler.prototype.fastList = function (apiUrl, path, exts) {
+
+                var defered = $q.defer();
+                var promise = defered.promise;
+                var data = {
+                    action: 'list',
+                    path: path,
+                    fileExtensions: exts && exts.length ? exts : undefined
+                };
+
+                self.inprocess = true;
+                self.error = '';
+
+                $http.post(apiUrl, data).success(function (data, code) {
+                    defered.resolve(data);
+                }).error(function (data, code) {
+                    defered.reject(data)
+                })['finally'](function () {
+                    self.inprocess = false;
+                });
+                return promise;
+
+            };
+
             ApiHandler.prototype.copy = function (apiUrl, items, path, singleFilename) {
                 var self = this;
                 var deferred = $q.defer();
